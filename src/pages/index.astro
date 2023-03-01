@@ -1,0 +1,59 @@
+---
+// Component Imports
+import Counter from "../components/Counter";
+import SvelteCounter from "../components/SvelteCounter.svelte";
+import VueCounter from "../components/VueCounter.vue";
+
+import splashImg from "../images/splash-img.jpeg";
+const someProps = {
+  count: 5,
+};
+import VueCounterpnpm from "../components/VueCounter.vue";
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <main>
+      <div
+        class="hero min-h-screen"
+        style={`background-image: url(${splashImg})`}
+      >
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content">
+          <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+            <p class="mb-5">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+              et a id nisi.
+            </p>
+            <button class="btn btn-primary">Get Started</button>
+          </div>
+        </div>
+      </div>
+      <figure class="card p-8 bg-blue-700 text-neutral-content">
+        <Counter {...someProps} client:visible>
+          <h1>Hello, React!</h1>
+        </Counter>
+      </figure>
+      <figure class="card p-8 bg-orange-700 text-neutral-content">
+        <SvelteCounter client:visible>
+          <h1>Hello from Svelte!</h1>
+        </SvelteCounter>
+      </figure>
+      <figure class="card p-8 bg-green-700 text-neutral-content">
+        <VueCounter client:visible>
+          <h1>Hello from Vue!</h1>
+        </VueCounter>
+      </figure>
+    </main>
+  </body>
+</html>
