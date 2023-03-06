@@ -1,0 +1,48 @@
+---
+import type { PokemonDetails } from "../../types";
+interface RootObject {
+  count: number;
+  next: string;
+  previous?: any;
+  results: Result[];
+}
+
+interface Result {
+  name: string;
+  url: string;
+}
+
+const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20%22");
+const allPokemon: RootObject = await response.json();
+// get details for all 20 pokemon
+const pokemonList: PokemonDetails[] = await Promise.all(
+  allPokemon.results.map(async (pokemon) => {
+    const response = await fetch(pokemon.url);
+    const pokemonDetails = await response.json();
+    return pokemonDetails;
+  })
+);
+---
+
+<ul>
+  {
+    pokemonList.map((pokemon) => (
+      <li>
+        <div class="card w-96 bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">{pokemon.name}</h2>
+            <figure>
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            </figure>
+            {pokemon.types.map((type) => (
+              <span class="badge me-2">{type.type.name}</span>
+            ))}
+            <div class="card-actions">
+              <a href={`pokemon/${pokemon.name}`} class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+      </li>
+    ))
+  }
+</ul>

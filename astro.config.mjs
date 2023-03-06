@@ -13,5 +13,7 @@ import vue from "@astrojs/vue";
 // https://astro.build/config
 export default defineConfig({
   // Enable React to support React JSX components.
-  integrations: [react(), tailwind(), svelte(), vue()]
+  integrations: [react(), tailwind(), svelte(), vue()],
+  output: 'server'
+
 });
