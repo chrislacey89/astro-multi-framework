@@ -1,17 +1,8 @@
 ---
 import type { PokemonStats, PokemonDetails } from "../../types";
+import { fetchData } from "../../util/fetchData";
 const { pokemonName } = Astro.params;
 
-async function fetchData<
-  TResult = "You must pass a type argument to fetchData"
->(url: string | undefined): Promise<TResult> {
-  if (!url) {
-    throw new Error("You must pass a URL to fetchData");
-  }
-  const response = await fetch(url);
-
-  return response.json();
-}
 
 const [pokemonStats, pokemonDetails] = await Promise.all([
   fetchData<PokemonStats>(
