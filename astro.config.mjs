@@ -11,9 +11,12 @@ import svelte from "@astrojs/svelte";
 import vue from "@astrojs/vue";
 
 // https://astro.build/config
+import vercel from "@astrojs/vercel/serverless";
+
+// https://astro.build/config
 export default defineConfig({
   // Enable React to support React JSX components.
   integrations: [react(), tailwind(), svelte(), vue()],
-  output: 'server'
-
+  output: 'server',
+  adapter: vercel()
 });
