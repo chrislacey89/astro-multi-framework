@@ -1,0 +1,17 @@
+---
+import type { PokemonDetails } from "../types";
+type Props = {
+  pokemon: PokemonDetails;
+};
+
+const { pokemon } = Astro.props;
+---
+
+<div class="avatar">
+  <div class="w-24">
+    <a href={`${pokemon.name}`}>
+      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+    </a>
+  </div>
+</div>
+<p class="text-center">{pokemon.name}</p>

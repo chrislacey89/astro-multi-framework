@@ -1,13 +1,12 @@
 import "./Counter.css";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useStore } from '@nanostores/react';
 import { count, addOne, subtractOne } from '../countStore';
+type PropsWithChildren<P> = P & { children?: ReactNode }
 
 export default function Counter({
-  children,
   count: initialCount,
 }: {
-  children: JSX.Element;
   count: number;
 }) {
   const currentCount = useStore(count);
@@ -16,15 +15,16 @@ export default function Counter({
   useEffect(() => {
     count.set(initialCount);
   },[])
-
+// 
   return (
     <>
+    {/* @ts-expect-error */}
       <div className="counter">
         <button className="btn" onClick={subtractOne}>-</button>
         <pre>{currentCount}</pre>
         <button className="btn btn-glass" onClick={addOne}>+</button>
       </div>
-      <div className="counter-message">{children}</div>
+      <div className="counter-message">hey</div>
     </>
   );
 }
