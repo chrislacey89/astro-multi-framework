@@ -10,7 +10,6 @@ const [pokemonStats, pokemonDetails] = await Promise.all([
   ),
   fetchData<PokemonDetails>(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`),
 ]);
-console.log("🚀  file: [pokemonName].astro:26  pokemonStats:", pokemonStats);
 ---
 
 <main>
